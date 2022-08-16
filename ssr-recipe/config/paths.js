@@ -52,7 +52,6 @@ module.exports = {
     servedPath: getServedPath(resolveApp("package.json")),
     ssrIndexJs: resolveApp("src/index.server.js"),
     ssrBuild: resolveApp("dist"),
-    publicUrlOrPath,
 };
 
 module.exports.moduleFileExtensions = this.moduleFileExtensions;
