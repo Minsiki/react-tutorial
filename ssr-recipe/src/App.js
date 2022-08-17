@@ -1,11 +1,10 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import Red from "./components/Red";
 import Blue from "./components/Blue";
 
-function App() {
+const App = () => {
     return (
         <div>
             <Menu />
@@ -16,6 +15,6 @@ function App() {
             </Routes>
         </div>
     );
-}
+};
 
 export default App;
