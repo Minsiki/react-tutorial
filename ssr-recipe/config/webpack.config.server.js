@@ -1,6 +1,6 @@
 const paths = require("./paths");
 const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
-const webpackNodeExternals = require("webpack-node-externals");
+const nodeExternals = require("webpack-node-externals");
 const getClientEnvironment = require("./env");
 const webpack = require("webpack");
 
@@ -53,7 +53,9 @@ module.exports = {
                         exclude: cssModuleRegex,
                         loader: require.resolve("css-loader"),
                         options: {
-                            onlyLocals: true,
+                            modules: {
+                                exportOnlyLocals: true
+                            }
                         },
                     },
                     {
@@ -64,6 +66,9 @@ module.exports = {
                             module: true,
                             onlyLocals: true,
                             getLocalIdent: getCSSModuleLocalIdent,
+                            modules: {
+                                exportOnlyLocals: true
+                            }
                         },
                     },
                     {
@@ -108,6 +113,6 @@ module.exports = {
     resolve: {
         modules: ["node_modules"],
     },
-    externals: [webpackNodeExternals()],
+    externals: [nodeExternals()],
     plugins: [new webpack.DefinePlugin(env.stringified)],
 };
