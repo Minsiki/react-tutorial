@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initalizeForm } from '../../modules/auth';
+import { changeField, initalizeForm, register } from '../../modules/auth';
 import AuthForm from './AuthForm';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const { form } = useSelector(({ auth }) => ({
+  const { form, auth, authError } = useSelector(({ auth }) => ({
     form: auth.register,
+    auth: auth.auth,
+    authError: auth.authError,
   }));
 
   const onChange = (e) => {
@@ -22,12 +24,30 @@ const RegisterForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const { username, password, passwordConfirm } = form;
+    if (password !== passwordConfirm) {
+      return;
+    }
+
+    dispatch(register({ username, password }));
   };
 
   useEffect(() => {
     dispatch(initalizeForm('register'));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (authError) {
+      console.log('오류발생');
+      console.log(authError);
+      return;
+    }
+
+    if (auth) {
+      console.log('회원가입 성공');
+      console.log(auth);
+    }
+  }, [auth, authError]);
   return (
     <AuthForm
       type="register"

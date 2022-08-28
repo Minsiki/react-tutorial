@@ -5,11 +5,11 @@ import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 
 const AuthFormBlock = styled.div`
-    h3 {
-        margin: 0;
-        color: ${palette.gray[8]}
-        margin-bottom: 1rem;
-    }
+  h3 {
+    margin: 0;
+    color: ${palette.gray[8]};
+    margin-bottom: 1rem;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -54,7 +54,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
-      <h3>로그인</h3>
+      <h3>{text}</h3>
       <form onSubmit={onSubmit}>
         <StyledInput
           autoComplete="username"
@@ -78,7 +78,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             placeholder="비밀번호 확인"
             type="password"
             onChange={onChange}
-            value={form.passworkConfirm}
+            value={form.passwordConfirm}
           />
         )}
         <ButtonWithMarginTop cyan fullWidth>
