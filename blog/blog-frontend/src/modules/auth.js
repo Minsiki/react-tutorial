@@ -58,7 +58,6 @@ const auth = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
-        console.log(form);
         draft[form][key] = value;
       }),
 
