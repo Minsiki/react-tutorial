@@ -35,7 +35,7 @@ export const login = createAction(LOGIN, ({ username, password }) => ({
   password,
 }));
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
-const loginSaga = createRequestSaga(REGISTER, authAPI.login);
+const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 export function* authSaga() {
   yield takeLatest(REGISTER, registerSaga);
   yield takeLatest(LOGIN, loginSaga);
@@ -58,7 +58,9 @@ const auth = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
-        draft[form][key] = value;
+        if (form && key) {
+          draft[form][key] = value;
+        }
       }),
 
     [INITIALIZE_FORM]: (state, { payload: { form } }) => ({

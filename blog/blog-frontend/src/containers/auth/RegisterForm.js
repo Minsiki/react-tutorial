@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from '../../../node_modules/react-router-dom/index';
+import { useNavigate } from 'react-router-dom';
 import AuthForm from '../../components/auth/AuthForm';
 import { changeField, initalizeForm, register } from '../../modules/auth';
 import { check } from '../../modules/user';
 
-const RegisterForm = () => {
+const RegisterForm = ({ history }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
@@ -76,8 +76,14 @@ const RegisterForm = () => {
     if (user) {
       console.log('check API 성공');
       console.log(user);
+      history.push('/');
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     }
-  }, [user]);
+  }, [history, user]);
 
   return (
     <AuthForm

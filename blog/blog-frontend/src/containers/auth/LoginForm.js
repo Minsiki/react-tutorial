@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from '../../../node_modules/react-router-dom/index';
+import { useNavigate } from 'react-router-dom';
 import AuthForm from '../../components/auth/AuthForm';
 import { changeField, initalizeForm, login } from '../../modules/auth';
 import { check } from '../../modules/user';
@@ -54,9 +54,15 @@ const LoginForm = ({ history }) => {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      //navigate('/');
+      history.push('/');
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     }
-  }, [user]);
+  }, [history, user]);
 
   return (
     <AuthForm
