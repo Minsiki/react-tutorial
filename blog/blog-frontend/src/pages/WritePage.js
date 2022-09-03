@@ -1,10 +1,9 @@
 import Responsive from '../components/common/Responsive';
-import Editor from '../components/write/Editor';
-
+import BlogEditor from '../components/write/BlogEditor';
 const WritePage = () => {
   return (
     <Responsive>
-      <Editor />
+      <BlogEditor />
     </Responsive>
   );
 };
