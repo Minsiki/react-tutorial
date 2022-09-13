@@ -1,10 +1,7 @@
 import qs from 'qs';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  useLocation,
-  useParams,
-} from '../../../node_modules/react-router-dom/index';
+import { useLocation, useParams } from 'react-router-dom';
 import PostList from '../../components/posts/PostList';
 import { listPosts } from '../../modules/posts';
 
